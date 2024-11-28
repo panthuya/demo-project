@@ -1,0 +1,5 @@
+# Exclude the directroy
+node_modules/
+
+# Exclude the file
+*.txt
