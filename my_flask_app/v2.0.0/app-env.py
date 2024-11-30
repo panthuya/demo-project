@@ -2,7 +2,7 @@ import os
 from flask import Flask
 
 # Get the port number from the environment variable or use 5002 as default
-port = int(os.environ.get('PORT', 5002))  # Changed `init` to `int` for correct type conversion
+port = int(os.environ.get('PORT', 5001))  # Changed `init` to `int` for correct type conversion
 
 # Create a Flask app
 app = Flask(__name__)  # Changed `_name_` to `__name__`
