@@ -7,7 +7,7 @@ COPY app-env.py /app
 RUN pip install --no-cache-dir Flask
 
 ARG PORT
-ENV port=${PORT:-5002}
+ENV port=${PORT:-}
 
 ARG NAME
 ENV NAME=${NAME}
