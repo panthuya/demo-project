@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        env:
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: myconfig
+              key: DB_NAME
+        
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: myconfig
+              key: DB_USER
+
+        - name: DB_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: myconfig
+              key: DB_PASSWORD
+
+        volumeMounts:
+        - name: myconfig
+          mountPath: "/usr/share/nginx/html"
+          readOnly: false
+      volumes:
+      - name: myconfig
+        configMap:
+          name: myconfig
+          items:
+          - key: "DB_NAME" 
+            path: "DB_NAME"
